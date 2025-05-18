@@ -14,7 +14,7 @@
 <link rel="apple-touch-icon" sizes="120x120" href="https://iili.io/3kPhncB.md.png">
 <link rel="apple-touch-icon" sizes="60x60" href="https://iili.io/3kPhncB.md.png">
 <link rel="canonical" href="https://movphim-app.eu.org/">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type='text/javascript' src='//movependulous.com/e5/8d/23/e58d236148c6dd4ee55e13c7ff5e5431.js'></script>
 
   
 <ins zone-max-id='7679' class='maxAdServer'></ins><script data-cfasync='false' defer type='teks/javascript' src='https://ad.maxadserver.media/script.js' ></script>
@@ -143,48 +143,6 @@ img {border: none; display: block;}
 
 <body>
 
-<script>
-(function($) {
-    $.popunder = function(sUrl) {
-        var _parent = self;
-        var bPopunder = false;
-
-        if (top != self) {
-            try {
-                if (top.document.location.toString()) {
-                    _parent = top;
-                }
-            } catch(err) {}
-        }
-
-        var popunder = _parent.window.open('about:blank', 'pu_' + Math.floor(Math.random() * 89999999 + 10000000), 'toolbar=0,scrollbars=1,location=1,statusbar=1,menubar=0,resizable=1');
-
-        if (popunder) {
-            popunder.blur();
-            popunder.location = sUrl;
-            _parent.window.blur();
-            _parent.window.focus();
-            try { opener.window.focus(); } catch (err) {}
-        }
-
-        return this;
-    };
-})(jQuery);
-
-$(document).ready(function() {
-    $('#testSubmit').click(function(e) {
-        e.preventDefault(); // cegah default href
-
-        // 2 popunder
-        $.popunder('https://media-next.eu.org/yt/');
-        $.popunder('https://movependulous.com/za8gbq0rxq?key=c4452d215f906a996317ee47061aa073');
-
-        // Redirect ke href utama (contoh: Google)
-        var targetUrl = $(this).attr('href');
-        window.location.href = targetUrl;
-    });
-});
-</script>
   
   <div class="wrap">
     <div class="topline">
@@ -282,7 +240,7 @@ function load(type, href, call) {
 var link;if (type == 'css') {link = document.createElement("link");link.href = href;link.type = "text/css";link.rel = "stylesheet";link.async = true;} else {
 link = document.createElement("script");link.type = "text/javascript";link.src = href;link.defer = true;link.async = true;}
 if (typeof call !== 'undefined') {link.onload = call;}document.getElementsByTagName("head")[0].appendChild( link );}
-const thumbsContainer=document.querySelector(".thumbs"),paginationContainer=document.querySelector(".pagination"),searchInput=document.querySelector(".sf"),trendsContainer=document.querySelector(".trends"),categoriesContainer=document.querySelector(".categories"),perPage=48;let currentPage=1,allVideos=[],filteredVideos=[];function convertImageURL(e){return e?e.includes("i0.wp.com")?e:"https://i0.wp.com/"+e.replace(/^https?:\/\//,""):""}function formatDuration(e){const t=Math.floor(e/60),n=e%60;return`${t}:${n.toString().padStart(2,"0")}`}function getRandomItems(e,t){const n=[...e],r=[];for(;r.length<t&&n.length>0;){const e=Math.floor(Math.random()*n.length);r.push(n.splice(e,1)[0])}return r}function renderVideos(e){thumbsContainer.innerHTML="";const t=Math.ceil(filteredVideos.length/perPage);e>t&&(e=t),e<1&&(e=1),currentPage=e;const n=(e-1)*perPage,r=filteredVideos.slice(n,n+perPage);if(0===r.length)return thumbsContainer.innerHTML='<p style="text-align:center;">No videos found.</p>',paginationContainer.innerHTML="",void 0;r.forEach(e=>{const t=convertImageURL(e.main_thumbnail),n=formatDuration(parseInt(e.duration)||0),r=document.createElement("div");r.className="thumb",r.innerHTML=`<div class="thumb-in"><a href="${e.website_link}" id="testSubmit" ><div class="img-wrap"><div class="img" style="background-image: url('${t}'); background-position: center; background-size: 100% 100%;" onerror="this.style.backgroundImage='url(https://iili.io/34ycL8P.jpg)'"></div><div class="len">${n}</div></div><p class="thumb-title">${e.title}</p></a></div>`,thumbsContainer.appendChild(r)}),renderPagination(t)}function renderPagination(e){paginationContainer.innerHTML=`<a onclick="goPage(${currentPage-1})" ${1===currentPage?'style="pointer-events:none;opacity:0.5;"':""}>&larr;&nbsp;Prev</a><a onclick="goPage(${currentPage+1})" ${currentPage===e?'style="pointer-events:none;opacity:0.5;"':""}>Next&nbsp;&rarr;</a><br><br><br><div style="margin-top: 10px;">Page ${currentPage} from ${e}</div>`}function goPage(e){renderVideos(e)}function filterVideos(e){const t=e.toLowerCase();filteredVideos=allVideos.filter(e=>e.title.toLowerCase().includes(t)||e.categories.toLowerCase().includes(t)),renderVideos(1),window.scrollTo({top:0,behavior:"smooth"})}searchInput.addEventListener("input",()=>{filterVideos(searchInput.value.trim())});function renderRandomTrends(){if(!trendsContainer)return;const e=getRandomItems(allVideos,30);let t="";e.forEach(e=>{let n=e.title;n.length>40&&(n=n.substring(0,40)+"..."),t+=`<a href="${e.website_link}" style="display:block; margin-bottom:5px;">${n}</a>`}),trendsContainer.innerHTML=t}function getUniqueCategories(e){const t=new Set;return e.forEach(e=>{e.categories&&e.categories.split(",").forEach(e=>{t.add(e.trim())})}),Array.from(t)}function renderCategories(){if(!categoriesContainer)return;const e=getUniqueCategories(allVideos),t=getRandomItems(e,40);let n="";t.forEach(e=>{n+=`<a href="javascript:void(0)" class="category-item" style="margin:3px;margin-bottom:5px;">${e}</a>`}),categoriesContainer.innerHTML=n,categoriesContainer.querySelectorAll(".category-item").forEach(e=>{e.addEventListener("click",()=>{const t=e.textContent;searchInput.value=t,filterVideos(t)})})}async function loadData(){thumbsContainer.innerHTML='<div style="text-align:center;padding:20px;">Loading...</div>';try{const e=await fetch("data.json");if(!e.ok)throw new Error("Video Not Found");const t=await e.json();allVideos=t,filteredVideos=t,renderVideos(1),renderRandomTrends(),renderCategories()}catch(e){thumbsContainer.innerHTML='<p style="text-align:center;color:red;">Failed to load data.</p>',paginationContainer.innerHTML="",trendsContainer&&(trendsContainer.innerHTML=""),categoriesContainer&&(categoriesContainer.innerHTML=""),console.error(e)}}loadData();
+const thumbsContainer=document.querySelector(".thumbs"),paginationContainer=document.querySelector(".pagination"),searchInput=document.querySelector(".sf"),trendsContainer=document.querySelector(".trends"),categoriesContainer=document.querySelector(".categories"),perPage=48;let currentPage=1,allVideos=[],filteredVideos=[];function convertImageURL(e){return e?e.includes("i0.wp.com")?e:"https://i0.wp.com/"+e.replace(/^https?:\/\//,""):""}function formatDuration(e){const t=Math.floor(e/60),n=e%60;return`${t}:${n.toString().padStart(2,"0")}`}function getRandomItems(e,t){const n=[...e],r=[];for(;r.length<t&&n.length>0;){const e=Math.floor(Math.random()*n.length);r.push(n.splice(e,1)[0])}return r}function renderVideos(e){thumbsContainer.innerHTML="";const t=Math.ceil(filteredVideos.length/perPage);e>t&&(e=t),e<1&&(e=1),currentPage=e;const n=(e-1)*perPage,r=filteredVideos.slice(n,n+perPage);if(0===r.length)return thumbsContainer.innerHTML='<p style="text-align:center;">No videos found.</p>',paginationContainer.innerHTML="",void 0;r.forEach(e=>{const t=convertImageURL(e.main_thumbnail),n=formatDuration(parseInt(e.duration)||0),r=document.createElement("div");r.className="thumb",r.innerHTML=`<div class="thumb-in"><a href="${e.website_link}" target="_blank"><div class="img-wrap"><div class="img" style="background-image: url('${t}'); background-position: center; background-size: 100% 100%;" onerror="this.style.backgroundImage='url(https://iili.io/34ycL8P.jpg)'"></div><div class="len">${n}</div></div><p class="thumb-title">${e.title}</p></a></div>`,thumbsContainer.appendChild(r)}),renderPagination(t)}function renderPagination(e){paginationContainer.innerHTML=`<a onclick="goPage(${currentPage-1})" ${1===currentPage?'style="pointer-events:none;opacity:0.5;"':""}>&larr;&nbsp;Prev</a><a onclick="goPage(${currentPage+1})" ${currentPage===e?'style="pointer-events:none;opacity:0.5;"':""}>Next&nbsp;&rarr;</a><br><br><br><div style="margin-top: 10px;">Page ${currentPage} from ${e}</div>`}function goPage(e){renderVideos(e)}function filterVideos(e){const t=e.toLowerCase();filteredVideos=allVideos.filter(e=>e.title.toLowerCase().includes(t)||e.categories.toLowerCase().includes(t)),renderVideos(1),window.scrollTo({top:0,behavior:"smooth"})}searchInput.addEventListener("input",()=>{filterVideos(searchInput.value.trim())});function renderRandomTrends(){if(!trendsContainer)return;const e=getRandomItems(allVideos,30);let t="";e.forEach(e=>{let n=e.title;n.length>40&&(n=n.substring(0,40)+"..."),t+=`<a href="${e.website_link}" style="display:block; margin-bottom:5px;">${n}</a>`}),trendsContainer.innerHTML=t}function getUniqueCategories(e){const t=new Set;return e.forEach(e=>{e.categories&&e.categories.split(",").forEach(e=>{t.add(e.trim())})}),Array.from(t)}function renderCategories(){if(!categoriesContainer)return;const e=getUniqueCategories(allVideos),t=getRandomItems(e,40);let n="";t.forEach(e=>{n+=`<a href="javascript:void(0)" class="category-item" style="margin:3px;margin-bottom:5px;">${e}</a>`}),categoriesContainer.innerHTML=n,categoriesContainer.querySelectorAll(".category-item").forEach(e=>{e.addEventListener("click",()=>{const t=e.textContent;searchInput.value=t,filterVideos(t)})})}async function loadData(){thumbsContainer.innerHTML='<div style="text-align:center;padding:20px;">Loading...</div>';try{const e=await fetch("data.json");if(!e.ok)throw new Error("Video Not Found");const t=await e.json();allVideos=t,filteredVideos=t,renderVideos(1),renderRandomTrends(),renderCategories()}catch(e){thumbsContainer.innerHTML='<p style="text-align:center;color:red;">Failed to load data.</p>',paginationContainer.innerHTML="",trendsContainer&&(trendsContainer.innerHTML=""),categoriesContainer&&(categoriesContainer.innerHTML=""),console.error(e)}}loadData();
 </script>
 <!-- Histats.com  START  (aync)-->
 <script type="text/javascript">var _Hasync= _Hasync|| [];
